@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StreetBuilder</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <h2>StreetBuilder - Construa suas ruas!</h2>
+  <div id="map" style="height:600px;"></div>
+
+  <script>
+    // Inicializa o mapa em João Pessoa
+    var map = L.map('map').setView([-7.115, -34.864], 13);
+
+    // Carrega tiles do OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Lista de pontos clicados
+    var drawnRoads = [];
+
+    // Ao clicar no mapa, adiciona ponto e desenha rua
+    map.on('click', function(e) {
+      var marker = L.marker(e.latlng).addTo(map);
+      drawnRoads.push(e.latlng);
+
+      if (drawnRoads.length > 1) {
+        L.polyline(drawnRoads, {color: 'blue'}).addTo(map);
+      }
+    });
+  </script>
+</body>
+</html>
