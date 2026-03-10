@@ -1,41 +1,15 @@
-# Prerequisites
-*.d
+# Ignorar arquivos temporários
+*.log
+*.tmp
+*.swp
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Ignorar configurações locais
+.vscode/
+.idea/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Ignorar dependências (se usar npm ou yarn)
+node_modules/
 
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# debug information files
-*.dwo
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
