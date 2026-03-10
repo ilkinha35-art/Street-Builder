@@ -11,10 +11,8 @@
   <div id="map" style="height:600px;"></div>
 
   <script>
-    // Inicializa o mapa em João Pessoa
     var map = L.map('map').setView([-7.115, -34.864], 13);
 
-    // Carrega tiles do OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap'
     }).addTo(map);
@@ -22,32 +20,28 @@
     var drawnRoads = [];
     var cars = [];
 
-    // Ao clicar no mapa, adiciona ponto e desenha rua
     map.on('click', function(e) {
       drawnRoads.push(e.latlng);
 
       if (drawnRoads.length > 1) {
         L.polyline(drawnRoads, {color: 'blue'}).addTo(map);
 
-        // Adiciona um carro no início da rua
         var car = L.circleMarker(drawnRoads[0], {radius: 6, color: 'red'}).addTo(map);
         cars.push({marker: car, path: drawnRoads.slice(), index: 0});
       }
     });
 
-    // Função para mover carros
     function moveCars() {
       cars.forEach(function(car) {
         if (car.index < car.path.length - 1) {
           car.index++;
           car.marker.setLatLng(car.path[car.index]);
         } else {
-          car.index = 0; // reinicia o percurso
+          car.index = 0;
         }
       });
     }
 
-    // Atualiza posição dos carros a cada segundo
     setInterval(moveCars, 1000);
   </script>
 </body>
